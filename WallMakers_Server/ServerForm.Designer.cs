@@ -1,6 +1,6 @@
-﻿namespace WallMakers
+﻿namespace WallMakers_Server
 {
-    partial class Form1
+    partial class ServerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Server
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(731, 594);
+            this.Name = "Server";
+            this.Text = "Server";
+            this.Load += new System.EventHandler(this.Server_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

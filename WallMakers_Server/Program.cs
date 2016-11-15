@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WallMakers
+namespace WallMakers_Server
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace WallMakers
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClientForm());
+            Application.Run(new ServerForm());
         }
     }
 }
