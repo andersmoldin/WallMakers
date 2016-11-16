@@ -78,7 +78,18 @@ namespace WallMakers
             myClient = new Client();
             Thread clientThread = new Thread(myClient.Start);
             clientThread.Start();
-            //clientThread.Join();
+            clientThread.Join();
+
+            NetworkStream n = myClient.client.GetStream();
+
+            SetUserName message = new SetUserName("Jagharettcooltnamn");
+
+            string json = JsonConvert.SerializeObject(message);
+
+            BinaryWriter w = new BinaryWriter(n);
+
+            w.Write(json);
+            w.Flush();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
