@@ -13,6 +13,8 @@ namespace WallMakers_Server
 {
     public partial class ServerForm : Form
     {
+        Thread serverThread;
+        Server server;
         public ServerForm()
         {
             InitializeComponent();
@@ -20,10 +22,40 @@ namespace WallMakers_Server
 
         private void Server_Load(object sender, EventArgs e)
         {
-            Server server = new Server();
-            Thread serverThread = new Thread(server.Run);
-            serverThread.Start();
-            serverThread.Join();
+
         }
+
+        private void btnShutdown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                server.listener.Stop();
+                //serverThread.Abort();
+                //serverThread.Interrupt();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+        private void btnStartServer_Click(object sender, EventArgs e)
+        {
+            server = new Server();
+            serverThread = new Thread(server.Run);
+            serverThread.Start();
+            //serverThread.Join();
+        }
+
+
+
+
+
+
+        //onödigt skit nedanför denna rad
+        private void ServerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
     }
 }

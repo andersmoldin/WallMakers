@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pruttokoll
 {
-    class RefreshGameBoard : Message
+    public class RefreshGameBoard : Message
     {
         public List<Player> players;
 

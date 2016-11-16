@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pruttokoll
 {
-    class SetUserName : Message
+    public class SetUserName : Message
     {
         public string username;
 

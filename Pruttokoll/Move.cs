@@ -7,7 +7,7 @@ using static Pruttokoll.Enums;
 
 namespace Pruttokoll
 {
-    class Move : Message
+    public class Move : Message
     {
         public  direction direction;
 

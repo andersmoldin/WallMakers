@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pruttokoll
 {
-    class Enums
+    public class Enums
     {
         public enum direction
         {

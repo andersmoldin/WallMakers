@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pruttokoll
 {
-    class MoveResponse : Message
+    public class MoveResponse : Message
     {
         public bool success;
 

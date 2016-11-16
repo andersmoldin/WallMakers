@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace WallMakers
+{
+    public class Client
+    {
+        public TcpClient client;
+
+        public void Start()
+        {
+            client = new TcpClient("127.0.0.1", 6666);
+            //client = new TcpClient(localIP, 5000);
+
+            Thread listenerThread = new Thread(Listen);
+            listenerThread.Start();
+
+            //listenerThread.Join();  //oklart
+        }
+
+        public void Listen()
+        {
+            string message = "";
+
+            try
+            {
+                while (true)
+                {
+                    NetworkStream n = client.GetStream();
+                    message = new BinaryReader(n).ReadString();
+                    Console.WriteLine("Other: " + message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        
+    }
+}

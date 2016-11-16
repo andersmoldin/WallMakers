@@ -17,11 +17,12 @@ namespace WallMakers_Server
         List<ClientHandler> clients = new List<ClientHandler>();
         List<Player> players = new List<Player>();
 
+        public TcpListener listener;
+
         public void Run()
         {
-            TcpListener listener = new TcpListener(IPAddress.Any, 6666);
+            listener = new TcpListener(IPAddress.Any, 6666);
             Debug.WriteLine("Hej");
-
             try
             {
                 listener.Start();
@@ -29,8 +30,9 @@ namespace WallMakers_Server
                 while (true)
                 {
                     TcpClient c = listener.AcceptTcpClient();
-                    ClientHandler newClient = new ClientHandler(c, this);
 
+
+                    ClientHandler newClient = new ClientHandler(c, this);
                     clients.Add(newClient);
 
                     Thread clientThread = new Thread(newClient.Run);
@@ -39,12 +41,13 @@ namespace WallMakers_Server
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
             finally
             {
-                if (listener != null)
-                    listener.Stop();
+                //if (listener != null)
+                //    listener.Stop();
+                Debug.WriteLine("Klart");
             }
         }
 
