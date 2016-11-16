@@ -53,7 +53,7 @@ namespace WallMakers
                     // Storlek på knappen 
                     room.Size = new System.Drawing.Size(12, 12);
                     room.TabIndex = 0;
-                    room.Text = "A";//$"{ room.X} { room.Y}";
+                    room.Text = "Weronika";//$"{ room.X} { room.Y}";
                     //room.UseVisualStyleBackColor = true;
 
                     // Sätt samma event för alla knappar 
