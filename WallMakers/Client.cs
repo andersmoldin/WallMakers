@@ -17,11 +17,13 @@ namespace WallMakers
 
         public void Start()
         {
-            client = new TcpClient("192.168.25.160", 6666);
-            //client = new TcpClient(localIP, 5000);
+            //client = new TcpClient("192.168.25.160", 6666);
+            client = new TcpClient("127.0.0.1", 6666);
 
             Thread listenerThread = new Thread(Listen);
             listenerThread.Start();
+
+            
 
             //listenerThread.Join();  //oklart
         }

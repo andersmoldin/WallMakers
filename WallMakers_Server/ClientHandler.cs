@@ -16,9 +16,7 @@ namespace WallMakers_Server
         public TcpClient tcpclient;
         private Server myServer;
 
-        public string Username { get; set; }
-
-        //public Player thisPlayer;
+        public Player thisPlayer;
 
         public ClientHandler(TcpClient c, Server server)
         {
@@ -31,6 +29,7 @@ namespace WallMakers_Server
             try
             {
                 string message = "";
+
                 while (true)
                 {
                     NetworkStream n = tcpclient.GetStream();
@@ -44,15 +43,21 @@ namespace WallMakers_Server
                         case "Move":
                             Move myMove = JsonConvert.DeserializeObject<Move>(message);
 
-                            RefreshGameBoard result = myServer.MoveLogic(myMove);
+                            RefreshGameBoard result = myServer.MoveLogic(thisPlayer, myMove);
 
                             string json = JsonConvert.SerializeObject(result);
                             myServer.Broadcast(this, json);
 
                             break;
                         case "SetUserName":
-                            //Göra setusername logik
-                            //create result
+                            SetUserName username = JsonConvert.DeserializeObject<SetUserName>(message);
+
+                            thisPlayer = new Player(0, 0, username.username);
+                            myServer.players.Add(thisPlayer);
+
+                            RefreshGameBoard currentGameBoard = new RefreshGameBoard(myServer.players);
+                            string currentGameBoardJson = JsonConvert.SerializeObject(currentGameBoard);
+                            myServer.Broadcast(this, currentGameBoardJson);
                             break;
                         default:
                             break;
@@ -60,7 +65,7 @@ namespace WallMakers_Server
 
                     Debug.WriteLine(message);
                 }
-
+                myServer.players.Remove(thisPlayer);
                 myServer.DisconnectClient(this);
                 tcpclient.Close();
             }

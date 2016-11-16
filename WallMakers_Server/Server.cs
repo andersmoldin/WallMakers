@@ -15,7 +15,7 @@ namespace WallMakers_Server
     public class Server
     {
         List<ClientHandler> clients = new List<ClientHandler>();
-        List<Player> players = new List<Player>();
+        public List<Player> players = new List<Player>();
 
         public TcpListener listener;
 
@@ -33,6 +33,7 @@ namespace WallMakers_Server
 
 
                     ClientHandler newClient = new ClientHandler(c, this);
+
                     clients.Add(newClient);
 
                     Thread clientThread = new Thread(newClient.Run);
@@ -70,8 +71,38 @@ namespace WallMakers_Server
             Broadcast(client, "Client X has left the building...");
         }
 
-        public RefreshGameBoard MoveLogic(Move move)
+        public RefreshGameBoard MoveLogic(Player player, Move move)
         {
+            switch (move.direction)
+            {
+                case Enums.direction.Up:
+                    if (player.x > 0)
+                    {
+                        player.x--;
+                    }
+                    break;
+                case Enums.direction.Down:
+                    if (player.x < 14)
+                    {
+                        player.x++;
+                    }
+                    break;
+                case Enums.direction.Left:
+                    if (player.y > 0)
+                    {
+                        player.y--;
+                    }
+                    break;
+                case Enums.direction.Right:
+                    if (player.y < 14)
+                    {
+                        player.y++;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
             RefreshGameBoard x = new RefreshGameBoard(players);
             return x;
         }
