@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WallMakers
 {
@@ -35,7 +36,8 @@ namespace WallMakers
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
-                    Console.WriteLine("Other: " + message);
+                    //Console.WriteLine("Other: " + message);
+                    MessageBox.Show(message);
                 }
             }
             catch (Exception ex)

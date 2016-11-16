@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Pruttokoll
 {
-    public abstract class Message
+    public class Message
     {
         public Guid id;
-        public double version = 8.0;
+        public double version = 8.1;
         public string type;
 
 

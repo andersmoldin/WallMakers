@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Pruttokoll;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace WallMakers
 {
@@ -44,11 +45,11 @@ namespace WallMakers
 
             Move message = new Move(Enums.direction.Left);
 
-            //serialisera "message" till ett json object .
+            string json = JsonConvert.SerializeObject(message);
 
             BinaryWriter w = new BinaryWriter(n);
 
-            w.Write("json");
+            w.Write(json);
             w.Flush();
         }
     }

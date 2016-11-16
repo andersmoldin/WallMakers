@@ -55,20 +55,11 @@ namespace WallMakers_Server
         {
             foreach (ClientHandler tmpClient in clients)
             {
-                if (tmpClient != client)
-                {
-                    NetworkStream n = tmpClient.tcpclient.GetStream();
-                    BinaryWriter w = new BinaryWriter(n);
-                    w.Write(client.Username + ": " + message);
-                    w.Flush();
-                }
-                else if (clients.Count() == 1)
-                {
-                    NetworkStream n = tmpClient.tcpclient.GetStream();
-                    BinaryWriter w = new BinaryWriter(n);
-                    w.Write(client.Username + ": " + "Sorry, you are alone...");
-                    w.Flush();
-                }
+                NetworkStream n = tmpClient.tcpclient.GetStream();
+                BinaryWriter w = new BinaryWriter(n);
+                w.Write(message);
+                w.Flush();
+
             }
         }
 
@@ -77,6 +68,12 @@ namespace WallMakers_Server
             clients.Remove(client);
             Console.WriteLine("Client X has left the building...");
             Broadcast(client, "Client X has left the building...");
+        }
+
+        public RefreshGameBoard MoveLogic(Move move)
+        {
+            RefreshGameBoard x = new RefreshGameBoard(players);
+            return x;
         }
     }
 }

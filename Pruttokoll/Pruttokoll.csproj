@@ -45,7 +45,7 @@
     <Compile Include="Move.cs" />
     <Compile Include="MoveResponse.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PrintGameBoard.cs" />
+    <Compile Include="RefreshGameBoard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetUserName.cs" />
   </ItemGroup>

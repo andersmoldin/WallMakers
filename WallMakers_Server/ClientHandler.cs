@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Pruttokoll;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
@@ -31,9 +34,31 @@ namespace WallMakers_Server
                 while (true)
                 {
                     NetworkStream n = tcpclient.GetStream();
+
                     message = new BinaryReader(n).ReadString();
-                    myServer.Broadcast(this, message);
-                    Console.WriteLine(message);
+
+                    Message msg = JsonConvert.DeserializeObject<Message>(message);
+
+                    switch (msg.type)
+                    {
+                        case "Move":
+                            Move myMove = JsonConvert.DeserializeObject<Move>(message);
+
+                            RefreshGameBoard result = myServer.MoveLogic(myMove);
+
+                            string json = JsonConvert.SerializeObject(result);
+                            myServer.Broadcast(this, json);
+
+                            break;
+                        case "SetUserName":
+                            //Göra setusername logik
+                            //create result
+                            break;
+                        default:
+                            break;
+                    }
+
+                    Debug.WriteLine(message);
                 }
 
                 myServer.DisconnectClient(this);
