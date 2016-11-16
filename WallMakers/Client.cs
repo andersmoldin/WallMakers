@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Pruttokoll;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,6 +17,12 @@ namespace WallMakers
     public class Client
     {
         public TcpClient client;
+        ClientForm form;
+
+        public Client(ClientForm form)
+        {
+            this.form = form;
+        }
 
         public void Start(object ip)
         {
@@ -39,12 +48,14 @@ namespace WallMakers
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
                     //Console.WriteLine("Other: " + message);
-                    MessageBox.Show(message);
+                    RefreshGameBoard gameboard = JsonConvert.DeserializeObject<RefreshGameBoard>(message);
+
+                    form.PrintGameBoard(gameboard.players);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
         }
 

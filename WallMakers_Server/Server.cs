@@ -82,7 +82,7 @@ namespace WallMakers_Server
                     }
                     break;
                 case Enums.direction.Down:
-                    if (player.x < 14)
+                    if (player.x < 11)
                     {
                         player.x++;
                     }
@@ -94,7 +94,7 @@ namespace WallMakers_Server
                     }
                     break;
                 case Enums.direction.Right:
-                    if (player.y < 14)
+                    if (player.y < 11)
                     {
                         player.y++;
                     }

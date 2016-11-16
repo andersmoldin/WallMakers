@@ -19,41 +19,63 @@ namespace WallMakers
     public partial class ClientForm : Form
     {
         Client myClient;
-        const int xSize = 15;
-        const int ySize = 15;
+        const int xSize = 12;
+        const int ySize = 12;
         Room[,] grid = new Room[xSize, ySize];
-
-
 
         public ClientForm()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void ClientForm_Load(object sender, EventArgs e)
+        {
+
+        }
+        public void PrintGameBoard(List<Player> players)
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 12; j++)
+                {
+                    grid[i, j].Text = "";
+                }
+            }
+            foreach (var player in players)
+            {
+                int x = player.x;
+                int y = player.y;
+
+                grid[x, y].Text = player.userName;
+
+            }
+        }
+
+        public void PrintGameBoard()
         {
             for (int x = 0; x < xSize; x++)
             {
                 for (int y = 0; y < ySize; y++)
                 {
-                    //grid[x, y]
 
                     Room room = new Room();
 
+                    grid[x, y] = room;
                     // Sätt koordinater 
                     room.Y = y;
                     room.X = x;
 
                     // Sätt ut knappen rätt i Forms 
-                    room.Location = new System.Drawing.Point(12 * x, 12 * y);
+                    room.Location = new System.Drawing.Point(65 * x, 65 * y);
 
                     // Ge den ett “unikt” namn 
                     room.Name = "label" + x + y;
 
                     // Storlek på knappen 
-                    room.Size = new System.Drawing.Size(12, 12);
+                    room.Size = new System.Drawing.Size(65, 65);
                     room.TabIndex = 0;
-                    room.Text = "Weronika";//$"{ room.X} { room.Y}";
+                    room.Text = "";//$"{ room.X} { room.Y}";
                     //room.UseVisualStyleBackColor = true;
 
                     // Sätt samma event för alla knappar 
@@ -63,22 +85,16 @@ namespace WallMakers
                     this.Controls.Add(room);
                 }
             }
-
         }
 
-        private string PrintGameboard()
-        {
-            string temp = "";
-
-            return temp;
-        }
+       
 
         private void btnCoupleUp_Click(object sender, EventArgs e)
         {
             string IP = textBoxIPadress.Text;
             string username = textBox1.Text;
 
-            myClient = new Client();
+            myClient = new Client(this);
             Thread clientThread = new Thread(myClient.Start);
             clientThread.Start(IP);
             clientThread.Join();
@@ -93,6 +109,13 @@ namespace WallMakers
 
             w.Write(json);
             w.Flush();
+
+            label1.Visible = false;
+            label2.Visible = false;
+            textBoxIPadress.Visible = false;
+            textBox1.Visible = false;
+            btnCoupleUp.Visible = false;
+            PrintGameBoard();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
