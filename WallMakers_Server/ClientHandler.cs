@@ -52,7 +52,7 @@ namespace WallMakers_Server
                         case "SetUserName":
                             SetUserName username = JsonConvert.DeserializeObject<SetUserName>(message);
 
-                            thisPlayer = new Player(0, 0, username.username);
+                            thisPlayer = new Player(5, 5, username.username);
                             myServer.players.Add(thisPlayer);
 
                             RefreshGameBoard currentGameBoard = new RefreshGameBoard(myServer.players);

@@ -92,7 +92,7 @@
             // 
             // btnSubmitUsername
             // 
-            this.btnSubmitUsername.Location = new System.Drawing.Point(394, 426);
+            this.btnSubmitUsername.Location = new System.Drawing.Point(577, 537);
             this.btnSubmitUsername.Name = "btnSubmitUsername";
             this.btnSubmitUsername.Size = new System.Drawing.Size(182, 33);
             this.btnSubmitUsername.TabIndex = 5;
