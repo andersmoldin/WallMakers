@@ -75,14 +75,17 @@ namespace WallMakers
 
         private void btnCoupleUp_Click(object sender, EventArgs e)
         {
+            string IP = textBoxIPadress.Text;
+            string username = textBox1.Text;
+
             myClient = new Client();
             Thread clientThread = new Thread(myClient.Start);
-            clientThread.Start();
+            clientThread.Start(IP);
             clientThread.Join();
 
             NetworkStream n = myClient.client.GetStream();
 
-            SetUserName message = new SetUserName("Jagharettcooltnamn");
+            SetUserName message = new SetUserName(username);
 
             string json = JsonConvert.SerializeObject(message);
 
