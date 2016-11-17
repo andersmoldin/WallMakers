@@ -8,14 +8,14 @@ namespace Pruttokoll
 {
     public class Player
     {
-        public int x;
         public int y;
+        public int x;
         public string userName;
 
         public Player(int x, int y, string userName)
         {
-            this.x = x;
-            this.y = y;
+            this.y = x;
+            this.x = y;
             this.userName = userName;
         }
     }

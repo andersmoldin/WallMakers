@@ -44,8 +44,8 @@ namespace WallMakers
             }
             foreach (var player in players)
             {
-                int x = player.x;
-                int y = player.y;
+                int x = player.y;
+                int y = player.x;
 
                 grid[x, y].Text = player.userName;
 
@@ -118,11 +118,28 @@ namespace WallMakers
             PrintGameBoard();
         }
 
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            SendMovement(Enums.direction.Up);
+        }
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            SendMovement(Enums.direction.Down);
+        }
         private void btnLeft_Click(object sender, EventArgs e)
+        {
+            SendMovement(Enums.direction.Left);
+        }
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            SendMovement(Enums.direction.Right);
+        }
+
+        private void SendMovement(Enums.direction direction)
         {
             NetworkStream n = myClient.client.GetStream();
 
-            Move message = new Move(Enums.direction.Left);
+            Move message = new Move(direction);
 
             string json = JsonConvert.SerializeObject(message);
 
@@ -141,5 +158,8 @@ namespace WallMakers
         {
 
         }
+
+      
+
     }
 }

@@ -76,27 +76,27 @@ namespace WallMakers_Server
             switch (move.direction)
             {
                 case Enums.direction.Up:
-                    if (player.x > 0)
-                    {
-                        player.x--;
-                    }
-                    break;
-                case Enums.direction.Down:
-                    if (player.x < 11)
-                    {
-                        player.x++;
-                    }
-                    break;
-                case Enums.direction.Left:
                     if (player.y > 0)
                     {
                         player.y--;
                     }
                     break;
-                case Enums.direction.Right:
+                case Enums.direction.Down:
                     if (player.y < 11)
                     {
                         player.y++;
+                    }
+                    break;
+                case Enums.direction.Left:
+                    if (player.x > 0)
+                    {
+                        player.x--;
+                    }
+                    break;
+                case Enums.direction.Right:
+                    if (player.x < 11)
+                    {
+                        player.x++;
                     }
                     break;
                 default:

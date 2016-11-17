@@ -34,6 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnRight = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCoupleUp
@@ -48,11 +51,11 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(126, 476);
+            this.btnLeft.Location = new System.Drawing.Point(128, 588);
             this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(123, 66);
+            this.btnLeft.Size = new System.Drawing.Size(80, 66);
             this.btnLeft.TabIndex = 1;
-            this.btnLeft.Text = "Pretend to move LEFT";
+            this.btnLeft.Text = "LEFT";
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
@@ -89,11 +92,44 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Username";
             // 
+            // btnRight
+            // 
+            this.btnRight.Location = new System.Drawing.Point(284, 588);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(80, 66);
+            this.btnRight.TabIndex = 5;
+            this.btnRight.Text = "RIGHT";
+            this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.Location = new System.Drawing.Point(206, 524);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(80, 66);
+            this.btnUp.TabIndex = 6;
+            this.btnUp.Text = "UP";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(206, 652);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(80, 66);
+            this.btnDown.TabIndex = 7;
+            this.btnDown.Text = "Down";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 1045);
+            this.ClientSize = new System.Drawing.Size(1182, 1037);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
+            this.Controls.Add(this.btnRight);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -116,6 +152,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnRight;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
     }
 }
 
