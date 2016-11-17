@@ -70,7 +70,7 @@ namespace WallMakers
                     room.Location = new System.Drawing.Point(65 * x, 72 * y);
 
                     // Ge den ett “unikt” namn 
-                    room.Name = "label" + x + y;
+                    room.Name = "room" + x + y;
 
                     // Storlek på knappen 
                     room.Size = new System.Drawing.Size(65, 72);
@@ -87,6 +87,14 @@ namespace WallMakers
                     this.Controls.Add(room);
                 }
             }
+
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+
+            this.Height = this.Controls[this.Controls.Count - 1].Bottom + 39;
+            this.Width = this.Controls[this.Controls.Count - 1].Right + 16;
+
+            MessageBox.Show(this.Controls[this.Controls.Count - 1].Bottom.ToString());
         }
 
 
@@ -123,10 +131,10 @@ namespace WallMakers
             comboBox1.Visible = false;
             PrintGameBoard();
 
-            btnUp.Visible = true;
-            btnDown.Visible = true;
-            btnLeft.Visible = true;
-            btnRight.Visible = true;
+            btnUp.Visible = false;
+            btnDown.Visible = false;
+            btnLeft.Visible = false;
+            btnRight.Visible = false;
 
 
         }
@@ -174,15 +182,37 @@ namespace WallMakers
 
         private void ClientForm_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            /*switch (e.KeyCode)
             {
                 case Keys.Up:
                     MessageBox.Show("UP");
                     break;
                 default:
                     break;
-            }
+            }*/
 
+        }
+
+        protected override bool ProcessCmdKey (ref System.Windows.Forms.Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Left:
+                    SendMovement(Enums.direction.Left);
+                    break;
+                case Keys.Right:
+                    SendMovement(Enums.direction.Right);
+                    break;
+                case Keys.Up:
+                    SendMovement(Enums.direction.Up);
+                    break;
+                case Keys.Down:
+                    SendMovement(Enums.direction.Down);
+                    break;
+                default:
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

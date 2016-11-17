@@ -55,7 +55,7 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(953, 658);
+            this.btnLeft.Location = new System.Drawing.Point(231, 713);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(80, 66);
             this.btnLeft.TabIndex = 1;
@@ -103,7 +103,7 @@
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(1109, 658);
+            this.btnRight.Location = new System.Drawing.Point(387, 713);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(80, 66);
             this.btnRight.TabIndex = 5;
@@ -114,7 +114,7 @@
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(1031, 594);
+            this.btnUp.Location = new System.Drawing.Point(309, 649);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(80, 66);
             this.btnUp.TabIndex = 6;
@@ -125,7 +125,7 @@
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(1031, 722);
+            this.btnDown.Location = new System.Drawing.Point(309, 777);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(80, 66);
             this.btnDown.TabIndex = 7;
@@ -193,7 +193,6 @@
             this.Controls.Add(this.textBoxIPadress);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnCoupleUp);
-            this.MinimumSize = new System.Drawing.Size(1200, 1028);
             this.Name = "ClientForm";
             this.Text = "Client";
             this.Load += new System.EventHandler(this.ClientForm_Load);
