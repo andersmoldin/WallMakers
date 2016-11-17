@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,9 +31,14 @@ namespace WallMakers_Server
             {
                 string message = "";
 
-                while (true)
+                while (tcpclient.Connected)
                 {
                     NetworkStream n = tcpclient.GetStream();
+                    // Slipp Patrik
+                    /*if ((IPAddress)tcpclient.Client.RemoteEndPoint() == "127.0.0.1")
+                    {
+                        tcpclient.Close();
+                    }*/
 
                     message = new BinaryReader(n).ReadString();
 
@@ -71,18 +77,23 @@ namespace WallMakers_Server
                             myServer.Broadcast(this, refreshedGameBoardJson);
                             break;
                         default:
+                            // ++ i failed attemps vid 5 failures addera ip till shitlist.
                             break;
                     }
 
                     Debug.WriteLine(message);
                 }
-                myServer.players.Remove(thisPlayer);
-                myServer.DisconnectClient(this);
-                tcpclient.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                myServer.players.Remove(thisPlayer);
+                myServer.clients.Remove(this);
+                myServer.DisconnectClient(this);
+                tcpclient.Close();
             }
         }
 

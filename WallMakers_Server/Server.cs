@@ -14,7 +14,7 @@ namespace WallMakers_Server
 {
     public class Server
     {
-        List<ClientHandler> clients = new List<ClientHandler>();
+        public List<ClientHandler> clients = new List<ClientHandler>();
         public List<Player> players = new List<Player>();
 
         public TcpListener listener;
