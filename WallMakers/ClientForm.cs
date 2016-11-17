@@ -31,7 +31,7 @@ namespace WallMakers
 
         private void ClientForm_Load(object sender, EventArgs e)
         {
-
+            comboBox1.DataSource = imageList1.Images.Keys;
         }
         public void PrintGameBoard(List<Player> players)
         {
@@ -47,10 +47,7 @@ namespace WallMakers
                 int x = player.y;
                 int y = player.x;
 
-
-
-
-                grid[x, y].Image = imageList1.Images[1];
+                grid[x, y].Image = imageList1.Images[player.imageIndex];
 
             }
         }
@@ -99,6 +96,8 @@ namespace WallMakers
             string IP = textBoxIPadress.Text;
             string username = textBox1.Text;
 
+            var userImageIndex = comboBox1.SelectedIndex;
+
             myClient = new Client(this);
             Thread clientThread = new Thread(myClient.Start);
             clientThread.Start(IP);
@@ -107,8 +106,9 @@ namespace WallMakers
             NetworkStream n = myClient.client.GetStream();
 
             SetUserName message = new SetUserName(username);
+            SetUserImage msg = new SetUserImage(userImageIndex);
 
-            string json = JsonConvert.SerializeObject(message);
+            string json = JsonConvert.SerializeObject(msg);
 
             BinaryWriter w = new BinaryWriter(n);
 
@@ -120,12 +120,14 @@ namespace WallMakers
             textBoxIPadress.Visible = false;
             textBox1.Visible = false;
             btnCoupleUp.Visible = false;
+            comboBox1.Visible = false;
             PrintGameBoard();
 
             btnUp.Visible = true;
             btnDown.Visible = true;
             btnLeft.Visible = true;
             btnRight.Visible = true;
+
 
         }
 
@@ -184,6 +186,11 @@ namespace WallMakers
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

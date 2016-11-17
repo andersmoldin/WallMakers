@@ -26,8 +26,8 @@ namespace WallMakers
 
         public void Start(object ip)
         {
-            client = new TcpClient("192.168.25.160", 6666);
-            //client = new TcpClient(ip.ToString(), 6666);
+            //client = new TcpClient("192.168.25.160", 6666);
+            client = new TcpClient(ip.ToString(), 6666);
 
             Thread listenerThread = new Thread(Listen);
             listenerThread.Start();

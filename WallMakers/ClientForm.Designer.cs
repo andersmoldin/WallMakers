@@ -40,6 +40,7 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnCoupleUp
@@ -69,6 +70,7 @@
             this.textBoxIPadress.Name = "textBoxIPadress";
             this.textBoxIPadress.Size = new System.Drawing.Size(196, 22);
             this.textBoxIPadress.TabIndex = 2;
+            this.textBoxIPadress.Text = "192.168.25.";
             this.textBoxIPadress.TextChanged += new System.EventHandler(this.textBoxIPadress_TextChanged);
             // 
             // label1
@@ -82,20 +84,22 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(172, 431);
+            this.textBox1.Location = new System.Drawing.Point(172, 577);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(196, 22);
             this.textBox1.TabIndex = 4;
+            this.textBox1.Visible = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(169, 411);
+            this.label2.Location = new System.Drawing.Point(169, 557);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Username";
+            this.label2.Visible = false;
             // 
             // btnRight
             // 
@@ -134,41 +138,52 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Andreas.png");
-            this.imageList1.Images.SetKeyName(1, "Anders.png");
-            this.imageList1.Images.SetKeyName(2, "Arvid.png");
-            this.imageList1.Images.SetKeyName(3, "Asim.png");
-            this.imageList1.Images.SetKeyName(4, "Axel.png");
-            this.imageList1.Images.SetKeyName(5, "Basel.png");
-            this.imageList1.Images.SetKeyName(6, "Carl.png");
-            this.imageList1.Images.SetKeyName(7, "Damir.png");
-            this.imageList1.Images.SetKeyName(8, "Daniel.png");
-            this.imageList1.Images.SetKeyName(9, "Jesper.png");
-            this.imageList1.Images.SetKeyName(10, "Johan.png");
-            this.imageList1.Images.SetKeyName(11, "Johanna.png");
-            this.imageList1.Images.SetKeyName(12, "Kristoffer.png");
-            this.imageList1.Images.SetKeyName(13, "Lars.png");
-            this.imageList1.Images.SetKeyName(14, "Lina.png");
-            this.imageList1.Images.SetKeyName(15, "Linn.png");
-            this.imageList1.Images.SetKeyName(16, "Malin A.png");
-            this.imageList1.Images.SetKeyName(17, "Malin U.png");
-            this.imageList1.Images.SetKeyName(18, "Martin.png");
-            this.imageList1.Images.SetKeyName(19, "Nathaniel.png");
-            this.imageList1.Images.SetKeyName(20, "Nils C.png");
-            this.imageList1.Images.SetKeyName(21, "Nils G.png");
-            this.imageList1.Images.SetKeyName(22, "Rickard.png");
-            this.imageList1.Images.SetKeyName(23, "Robert.png");
-            this.imageList1.Images.SetKeyName(24, "Robin.png");
-            this.imageList1.Images.SetKeyName(25, "Sebastian.png");
-            this.imageList1.Images.SetKeyName(26, "Weronika.png");
-            this.imageList1.Images.SetKeyName(27, "Viktor.png");
-            this.imageList1.Images.SetKeyName(28, "Amanda.png");
+            this.imageList1.Images.SetKeyName(0, "Amanda");
+            this.imageList1.Images.SetKeyName(1, "Anders");
+            this.imageList1.Images.SetKeyName(2, "Andreas");
+            this.imageList1.Images.SetKeyName(3, "Arvid");
+            this.imageList1.Images.SetKeyName(4, "Asim");
+            this.imageList1.Images.SetKeyName(5, "Axel");
+            this.imageList1.Images.SetKeyName(6, "Basel");
+            this.imageList1.Images.SetKeyName(7, "Carl");
+            this.imageList1.Images.SetKeyName(8, "Damir");
+            this.imageList1.Images.SetKeyName(9, "Daniel");
+            this.imageList1.Images.SetKeyName(10, "Jesper");
+            this.imageList1.Images.SetKeyName(11, "Johan");
+            this.imageList1.Images.SetKeyName(12, "Johanna");
+            this.imageList1.Images.SetKeyName(13, "Kristoffer");
+            this.imageList1.Images.SetKeyName(14, "Lars");
+            this.imageList1.Images.SetKeyName(15, "Lina");
+            this.imageList1.Images.SetKeyName(16, "Linn");
+            this.imageList1.Images.SetKeyName(17, "Malin A");
+            this.imageList1.Images.SetKeyName(18, "Malin U");
+            this.imageList1.Images.SetKeyName(19, "Martin");
+            this.imageList1.Images.SetKeyName(20, "Nathaniel");
+            this.imageList1.Images.SetKeyName(21, "Nils C");
+            this.imageList1.Images.SetKeyName(22, "Nils G");
+            this.imageList1.Images.SetKeyName(23, "Rickard");
+            this.imageList1.Images.SetKeyName(24, "Robert");
+            this.imageList1.Images.SetKeyName(25, "Robin");
+            this.imageList1.Images.SetKeyName(26, "Sebastian");
+            this.imageList1.Images.SetKeyName(27, "Viktor");
+            this.imageList1.Images.SetKeyName(28, "Weronika");
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(172, 432);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(196, 24);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1380, 1045);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnRight);
@@ -200,6 +215,7 @@
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

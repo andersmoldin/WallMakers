@@ -52,12 +52,23 @@ namespace WallMakers_Server
                         case "SetUserName":
                             SetUserName username = JsonConvert.DeserializeObject<SetUserName>(message);
 
-                            thisPlayer = new Player(5, 5, username.username);
+                            thisPlayer = new Player(5, 5, 4/*username.username*/);
                             myServer.players.Add(thisPlayer);
 
                             RefreshGameBoard currentGameBoard = new RefreshGameBoard(myServer.players);
                             string currentGameBoardJson = JsonConvert.SerializeObject(currentGameBoard);
                             myServer.Broadcast(this, currentGameBoardJson);
+                            break;
+                        case "SetUserImage":
+                            SetUserImage userImage = JsonConvert.DeserializeObject<SetUserImage>(message);
+
+
+                            thisPlayer = new Player(5, 5, userImage.userImageIndex/*username.username*/);
+                            myServer.players.Add(thisPlayer);
+
+                            RefreshGameBoard refreshedGameBoard = new RefreshGameBoard(myServer.players);
+                            string refreshedGameBoardJson = JsonConvert.SerializeObject(refreshedGameBoard);
+                            myServer.Broadcast(this, refreshedGameBoardJson);
                             break;
                         default:
                             break;

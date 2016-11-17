@@ -11,7 +11,7 @@ namespace Pruttokoll
         public int y;
         public int x;
         public string userName;
-        public string imageLocation;
+        public int imageIndex;
         //@"C:\Users\Administrator\Downloads\Martin.png";
 
         //public Player(int x, int y, string userName, string imageLocation)
@@ -22,12 +22,12 @@ namespace Pruttokoll
         //    this.imageLocation = imageLocation;
         //}
 
-        public Player(int x, int y, string imageLocation)
+        public Player(int x, int y, int imageIndex)
         {
             this.y = x;
             this.x = y;
             this.userName = "Default";
-            this.imageLocation = imageLocation;
+            this.imageIndex = imageIndex;
         }
     }
 }
