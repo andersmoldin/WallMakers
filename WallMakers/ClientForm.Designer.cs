@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
             this.btnCoupleUp = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.textBoxIPadress = new System.Windows.Forms.TextBox();
@@ -37,6 +39,7 @@
             this.btnRight = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // btnCoupleUp
@@ -51,12 +54,13 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(128, 588);
+            this.btnLeft.Location = new System.Drawing.Point(953, 658);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(80, 66);
             this.btnLeft.TabIndex = 1;
             this.btnLeft.Text = "LEFT";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Visible = false;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // textBoxIPadress
@@ -82,6 +86,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(196, 22);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
@@ -94,39 +99,76 @@
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(284, 588);
+            this.btnRight.Location = new System.Drawing.Point(1109, 658);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(80, 66);
             this.btnRight.TabIndex = 5;
             this.btnRight.Text = "RIGHT";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Visible = false;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(206, 524);
+            this.btnUp.Location = new System.Drawing.Point(1031, 594);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(80, 66);
             this.btnUp.TabIndex = 6;
             this.btnUp.Text = "UP";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Visible = false;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(206, 652);
+            this.btnDown.Location = new System.Drawing.Point(1031, 722);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(80, 66);
             this.btnDown.TabIndex = 7;
-            this.btnDown.Text = "Down";
+            this.btnDown.Text = "DOWN";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Visible = false;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Andreas.png");
+            this.imageList1.Images.SetKeyName(1, "Anders.png");
+            this.imageList1.Images.SetKeyName(2, "Arvid.png");
+            this.imageList1.Images.SetKeyName(3, "Asim.png");
+            this.imageList1.Images.SetKeyName(4, "Axel.png");
+            this.imageList1.Images.SetKeyName(5, "Basel.png");
+            this.imageList1.Images.SetKeyName(6, "Carl.png");
+            this.imageList1.Images.SetKeyName(7, "Damir.png");
+            this.imageList1.Images.SetKeyName(8, "Daniel.png");
+            this.imageList1.Images.SetKeyName(9, "Jesper.png");
+            this.imageList1.Images.SetKeyName(10, "Johan.png");
+            this.imageList1.Images.SetKeyName(11, "Johanna.png");
+            this.imageList1.Images.SetKeyName(12, "Kristoffer.png");
+            this.imageList1.Images.SetKeyName(13, "Lars.png");
+            this.imageList1.Images.SetKeyName(14, "Lina.png");
+            this.imageList1.Images.SetKeyName(15, "Linn.png");
+            this.imageList1.Images.SetKeyName(16, "Malin A.png");
+            this.imageList1.Images.SetKeyName(17, "Malin U.png");
+            this.imageList1.Images.SetKeyName(18, "Martin.png");
+            this.imageList1.Images.SetKeyName(19, "Nathaniel.png");
+            this.imageList1.Images.SetKeyName(20, "Nils C.png");
+            this.imageList1.Images.SetKeyName(21, "Nils G.png");
+            this.imageList1.Images.SetKeyName(22, "Rickard.png");
+            this.imageList1.Images.SetKeyName(23, "Robert.png");
+            this.imageList1.Images.SetKeyName(24, "Robin.png");
+            this.imageList1.Images.SetKeyName(25, "Sebastian.png");
+            this.imageList1.Images.SetKeyName(26, "Weronika.png");
+            this.imageList1.Images.SetKeyName(27, "Viktor.png");
+            this.imageList1.Images.SetKeyName(28, "Amanda.png");
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 1037);
+            this.ClientSize = new System.Drawing.Size(1380, 1045);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnRight);
@@ -136,6 +178,7 @@
             this.Controls.Add(this.textBoxIPadress);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnCoupleUp);
+            this.MinimumSize = new System.Drawing.Size(1200, 1028);
             this.Name = "ClientForm";
             this.Text = "Client";
             this.Load += new System.EventHandler(this.ClientForm_Load);
@@ -156,6 +199,7 @@
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

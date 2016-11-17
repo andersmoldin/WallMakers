@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WallMakers
 {
-    class Room : System.Windows.Forms.Label
+    class Room : System.Windows.Forms.PictureBox
     {
         public int X { get; set; }
         public int Y { get; set; }

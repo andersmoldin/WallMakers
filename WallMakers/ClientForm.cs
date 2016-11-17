@@ -19,8 +19,8 @@ namespace WallMakers
     public partial class ClientForm : Form
     {
         Client myClient;
-        const int xSize = 12;
-        const int ySize = 12;
+        const int xSize = 10;
+        const int ySize = 10;
         Room[,] grid = new Room[xSize, ySize];
 
         public ClientForm()
@@ -35,11 +35,11 @@ namespace WallMakers
         }
         public void PrintGameBoard(List<Player> players)
         {
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < xSize; i++)
             {
-                for (int j = 0; j < 12; j++)
+                for (int j = 0; j < ySize; j++)
                 {
-                    grid[i, j].Text = "";
+                    grid[i, j].Image = null;
                 }
             }
             foreach (var player in players)
@@ -47,7 +47,10 @@ namespace WallMakers
                 int x = player.y;
                 int y = player.x;
 
-                grid[x, y].Text = player.userName;
+
+
+
+                grid[x, y].Image = imageList1.Images[1];
 
             }
         }
@@ -67,15 +70,17 @@ namespace WallMakers
                     room.X = x;
 
                     // Sätt ut knappen rätt i Forms 
-                    room.Location = new System.Drawing.Point(65 * x, 65 * y);
+                    room.Location = new System.Drawing.Point(65 * x, 72 * y);
 
                     // Ge den ett “unikt” namn 
                     room.Name = "label" + x + y;
 
                     // Storlek på knappen 
-                    room.Size = new System.Drawing.Size(65, 65);
+                    room.Size = new System.Drawing.Size(65, 72);
                     room.TabIndex = 0;
                     room.Text = "";//$"{ room.X} { room.Y}";
+                    room.SizeMode = PictureBoxSizeMode.StretchImage;
+                    //room.Load(@"C:\Users\Administrator\Downloads\Martin.png");
                     //room.UseVisualStyleBackColor = true;
 
                     // Sätt samma event för alla knappar 
@@ -87,7 +92,7 @@ namespace WallMakers
             }
         }
 
-       
+
 
         private void btnCoupleUp_Click(object sender, EventArgs e)
         {
@@ -117,10 +122,10 @@ namespace WallMakers
             btnCoupleUp.Visible = false;
             PrintGameBoard();
 
-            //btnUp.Visible = false;
-            //btnDown.Visible = false;
-            //btnLeft.Visible = false;
-            //btnRight.Visible = false;
+            btnUp.Visible = true;
+            btnDown.Visible = true;
+            btnLeft.Visible = true;
+            btnRight.Visible = true;
 
         }
 
@@ -175,6 +180,11 @@ namespace WallMakers
                 default:
                     break;
             }
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
