@@ -116,6 +116,12 @@ namespace WallMakers
             textBox1.Visible = false;
             btnCoupleUp.Visible = false;
             PrintGameBoard();
+
+            //btnUp.Visible = false;
+            //btnDown.Visible = false;
+            //btnLeft.Visible = false;
+            //btnRight.Visible = false;
+
         }
 
         private void btnUp_Click(object sender, EventArgs e)
@@ -159,7 +165,17 @@ namespace WallMakers
 
         }
 
-      
+        private void ClientForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    MessageBox.Show("UP");
+                    break;
+                default:
+                    break;
+            }
 
+        }
     }
 }

@@ -139,6 +139,7 @@
             this.Name = "ClientForm";
             this.Text = "Client";
             this.Load += new System.EventHandler(this.ClientForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClientForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
