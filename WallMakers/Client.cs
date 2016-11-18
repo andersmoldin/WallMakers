@@ -49,12 +49,26 @@ namespace WallMakers
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
-                    lock (myLock)
+                    
+                    bool isJson = true;
+                    try
                     {
-                        myQueue.Add(message);
-                        Monitor.Pulse(myLock);
+                        //är det ett giltigt json?
+                        var jsonobject = JsonConvert.DeserializeObject(message);
                     }
+                    catch (Exception)
+                    {
 
+                        isJson = false;
+                    }
+                    if (isJson)
+                    {
+                        lock (myQueue)
+                        {
+                            myQueue.Add(message);
+                            Monitor.Pulse(myQueue);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -67,16 +81,23 @@ namespace WallMakers
             while (true)
             {
                 RefreshGameBoard gameboard = null;
-                lock (myLock)
+                lock (myQueue)
                 {
+                    while (myQueue.Count == 0)
+                    {
+                        Monitor.Wait(myQueue);
+                    }
                     if (myQueue.Count > 0)
                     {
-                        gameboard = JsonConvert.DeserializeObject<RefreshGameBoard>(myQueue.First());
-                        myQueue.RemoveAt(0);
-                    }
-                    else
-                    {
-                        Monitor.Wait(myLock);
+                        try
+                        {
+                            gameboard = JsonConvert.DeserializeObject<RefreshGameBoard>(myQueue.First());
+                            myQueue.RemoveAt(0);
+                        }
+                        catch (Exception)
+                        {
+                            myQueue.RemoveRange(0, myQueue.Count);
+                        }
                     }
                 }
 
