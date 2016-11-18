@@ -101,6 +101,8 @@ namespace WallMakers
 
         private void btnCoupleUp_Click(object sender, EventArgs e)
         {
+            PrintGameBoard();
+
             string IP = textBoxIPadress.Text;
             string username = textBox1.Text;
 
@@ -129,7 +131,6 @@ namespace WallMakers
             textBox1.Visible = false;
             btnCoupleUp.Visible = false;
             comboBox1.Visible = false;
-            PrintGameBoard();
 
             btnUp.Visible = false;
             btnDown.Visible = false;
