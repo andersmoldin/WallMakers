@@ -39,7 +39,6 @@ namespace WallMakers_Server
                     {
                         tcpclient.Close();
                     }*/
-
                     message = new BinaryReader(n).ReadString();
 
                     Message msg = JsonConvert.DeserializeObject<Message>(message);
@@ -86,14 +85,18 @@ namespace WallMakers_Server
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("Här är vårt message: " + ex.Message);
             }
             finally
             {
                 myServer.players.Remove(thisPlayer);
                 myServer.clients.Remove(this);
-                myServer.DisconnectClient(this);
+                //myServer.DisconnectClient(this);
                 tcpclient.Close();
+
+                RefreshGameBoard refreshedGameBoard = new RefreshGameBoard(myServer.players);
+                string refreshedGameBoardJson = JsonConvert.SerializeObject(refreshedGameBoard);
+                myServer.Broadcast(this, refreshedGameBoardJson);
             }
         }
 

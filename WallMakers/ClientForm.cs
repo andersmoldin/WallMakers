@@ -94,7 +94,7 @@ namespace WallMakers
             this.Height = this.Controls[this.Controls.Count - 1].Bottom + 39;
             this.Width = this.Controls[this.Controls.Count - 1].Right + 16;
 
-            MessageBox.Show(this.Controls[this.Controls.Count - 1].Bottom.ToString());
+            //MessageBox.Show(this.Controls[this.Controls.Count - 1].Bottom.ToString());
         }
 
 

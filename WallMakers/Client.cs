@@ -18,6 +18,9 @@ namespace WallMakers
     {
         public TcpClient client;
         ClientForm form;
+        string message = "";
+        private List<string> myQueue = new List<string>();
+        readonly static object myLock = new object();
 
         public Client(ClientForm form)
         {
@@ -30,27 +33,28 @@ namespace WallMakers
             client = new TcpClient(ip.ToString(), 6666);
 
             Thread listenerThread = new Thread(Listen);
-            listenerThread.Start();
+            Thread consumerThread = new Thread(Consume);
 
-            
+            listenerThread.Start();
+            consumerThread.Start();
 
             //listenerThread.Join();  //oklart
         }
 
         public void Listen()
         {
-            string message = "";
-
             try
             {
                 while (true)
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
-                    //Console.WriteLine("Other: " + message);
-                    RefreshGameBoard gameboard = JsonConvert.DeserializeObject<RefreshGameBoard>(message);
+                    lock (myLock)
+                    {
+                        myQueue.Add(message);
+                        Monitor.Pulse(myLock);
+                    }
 
-                    form.PrintGameBoard(gameboard.players);
                 }
             }
             catch (Exception ex)
@@ -58,7 +62,26 @@ namespace WallMakers
                 Debug.WriteLine(ex.Message);
             }
         }
+        public void Consume()
+        {
+            while (true)
+            {
+                lock (myLock)
+                {
+                    if (myQueue.Count > 0)
+                    {
+                        RefreshGameBoard gameboard = JsonConvert.DeserializeObject<RefreshGameBoard>(myQueue.First());
+                        myQueue.RemoveAt(0);
+                        form.PrintGameBoard(gameboard.players);
+                    }
+                    else
+                    {
+                        Monitor.Wait(myLock);
+                    }
+                }
+            }
+        }
 
-        
+
     }
 }
