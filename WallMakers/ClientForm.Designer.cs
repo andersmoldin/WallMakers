@@ -195,6 +195,7 @@
             this.Controls.Add(this.btnCoupleUp);
             this.Name = "ClientForm";
             this.Text = "Client";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClientForm_FormClosing);
             this.Load += new System.EventHandler(this.ClientForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClientForm_KeyDown);
             this.ResumeLayout(false);
