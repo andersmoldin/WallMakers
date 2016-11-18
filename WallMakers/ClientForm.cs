@@ -22,6 +22,7 @@ namespace WallMakers
         const int xSize = 10;
         const int ySize = 10;
         Room[,] grid = new Room[xSize, ySize];
+        List<Player> previousPrintOfPlayers = new List<Player>();
 
         public ClientForm()
         {
@@ -35,21 +36,28 @@ namespace WallMakers
         }
         public void PrintGameBoard(List<Player> players)
         {
-            for (int i = 0; i < xSize; i++)
+            //for (int i = 0; i < xSize; i++)
+            //{
+            //    for (int j = 0; j < ySize; j++)
+            //    {
+            //        grid[i, j].Image = null;
+            //    }
+            //}
+            foreach (var player in previousPrintOfPlayers)
             {
-                for (int j = 0; j < ySize; j++)
-                {
-                    grid[i, j].Image = null;
-                }
+                grid[player.x, player.y].Image = null;
             }
+
+
+            previousPrintOfPlayers = players.Select(p => new Player(p.x, p.y, p.imageIndex)).ToList();
             foreach (var player in players)
             {
                 int x = player.y;
                 int y = player.x;
 
                 grid[x, y].Image = imageList1.Images[player.imageIndex];
-
             }
+
         }
 
         public void PrintGameBoard()
