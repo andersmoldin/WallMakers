@@ -66,18 +66,23 @@ namespace WallMakers
         {
             while (true)
             {
+                RefreshGameBoard gameboard = null;
                 lock (myLock)
                 {
                     if (myQueue.Count > 0)
                     {
-                        RefreshGameBoard gameboard = JsonConvert.DeserializeObject<RefreshGameBoard>(myQueue.First());
+                        gameboard = JsonConvert.DeserializeObject<RefreshGameBoard>(myQueue.First());
                         myQueue.RemoveAt(0);
-                        form.PrintGameBoard(gameboard.players);
                     }
                     else
                     {
                         Monitor.Wait(myLock);
                     }
+                }
+
+                if (gameboard != null)
+                {
+                    form.PrintGameBoard(gameboard.players);
                 }
             }
         }
