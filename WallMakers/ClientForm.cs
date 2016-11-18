@@ -233,5 +233,10 @@ namespace WallMakers
         {
 
         }
+
+        private void ClientForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            myClient.client.Close();
+        }
     }
 }
